@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div>Cart Quantity</div>
+    <button onclick="
+        console.log(quantity);
+    ">
+        Show Quantity
+    </button>
+
+    <button onclick="
+        updateCartQuantity(1);
+    ">
+        Add to Cart
+    </button>
+
+    <button onclick="
+        updateCartQuantity(2);
+    ">
+        +2
+    </button>
+
+    <button onclick="
+        updateCartQuantity(3);
+    ">
+        +3
+    </button>
+
+    <button onclick="
+        updateCartQuantity(-1);
+    ">
+        Remove from cart
+    </button>
+
+    <button onclick="
+        updateCartQuantity(-2);
+    ">
+        -2
+    </button>
+
+    <button onclick="
+        updateCartQuantity(-3);
+    ">
+        -3
+    </button>
+
+    <button onclick="
+        quantity = 0;
+        console.log('Cart was reset.');
+        console.log(`Cart quantity: ${quantity}`);
+    ">
+        Reset Cart
+    </button>
+
+    <script>
+        let quantity = 0;
+
+        function updateCartQuantity(value) {
+            if (quantity + value > 10) {
+                alert('The cart is full');
+                return;
+            } 
+            else if (quantity + value < 0) {
+                alert('The cart is already empty');
+                return;
+            }
+            quantity += value;
+            console.log(`Cart quantity: ${quantity}`);
+        }
+    </script>
+</body>
+</html>
