@@ -46,6 +46,13 @@
         product2.fun();
 
         console.log(typeof console.log);
+
+        // js object -> json
+        console.log(JSON.stringify(product2));
+
+        // json -> js object
+        const jsonString = JSON.stringify(product2);
+        console.log(JSON.parse(jsonString));
     </script>
 </body>
 </html>

@@ -29,11 +29,13 @@
             score.wins = 0;
             score.lost = 0;
             score.tie = 0;
+            localStorage.removeItem('score');
         ">
             Reset Score
         </button>
 
         <script>
+
             function computerMove() {
                 let computer = Math.random();
 
@@ -41,7 +43,7 @@
                     return 'paper';
                 }
                 else if (computer <= 2/3) {
-                    return 'scissors';
+                    return 'scissor';
                 }
                 else {
                     return'rock';
@@ -49,17 +51,18 @@
                 
             }
             
-            const score = {
+            //  score = A || B means if A is falsy then it takes B. If A is truthy, take A.
+            let score = JSON.parse(localStorage.getItem
+            ("score")) || {
                 wins: 0,
                 lost: 0,
-                tie: 0
-            };
-
+                tie: 0  
+            }
+            
             function playgame(userMove) {
                 let result = '';
                 const computer = computerMove();
-                
-
+        
                 if (userMove === computer) {
                     result = 'tie';
                 }
@@ -79,7 +82,6 @@
                         result = 'won';
                     }
                 }
-
                 // user is rock
                 else {
                     if(computer === 'paper') {
@@ -99,6 +101,9 @@
                 else {
                     score.tie++;
                 }
+
+                localStorage.setItem("score", JSON.stringify(score));
+
                 alert(`You picked scissor. Computer picked ${computer}. you have ${result}.
 wins: ${score.wins}, lost: ${score.lost}, ties: ${score.tie}`);
             }
