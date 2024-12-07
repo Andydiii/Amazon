@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>
+        9a
+    </button>
+
+    <button class="js-button2">
+        9b
+    </button>
+
+    <script>
+        // 9a
+        console.log(document.querySelector('button'));
+
+        // 9b
+        document.querySelector('.js-button2').innerHTML = '9b done';
+    </script>
+</body>
+</html>
