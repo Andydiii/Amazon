@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .css-subscribe-button {
+            border: none;
+            background-color: black;
+            color: white;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-weight: bold;
+            margin-bottom: 35px;
+
+            cursor: pointer;
+        }
+
+        .is-Subscribed {
+            background-color: rgb(226, 226, 226);
+            color: black;    
+        }
+
+
+        .css-cost-input {
+            /* first value is for top and bot, second is for left and right */
+            padding: 10px 10px;
+            font-size: 15px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .css-calculate-button {
+            border: none;
+            background-color: green;
+            color: white;
+            padding: 12px 15px;
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+    <p class="css-p1">YouTube Subscribe Button</p>
+    
+
+    <button class = "subscribe-button css-subscribe-button" onclick="
+        subscribe();
+    ">Subscribe</button>
+
+    <p class="css-p2">Amazon Shipping Calculator</p>
+    <p class="css-p2">Orders under $40 = price + $10 shipping fee. </p>
+    <p class="css-p2">Orders over $40 = FREE shipping. </p>
+
+    <input class="js-cost-input css-cost-input" placeholder="Cost of order" onkeydown="
+        // inside onkeydown, we are given special object called 'event'
+        // console.log(event);
+
+        // Press enter key causing same effect as click
+        press_enter(event);
+    "> 
+    
+
+    <button class="css-calculate-button" onclick="
+        calculateTotal();
+    ">Calculate</button>
+
+    <p class="final-cost"></p>
+
+    <script>
+        console.log('25' - 5);
+        console.log('25' + 5);
+        
+        // window object represents browser. it is always added autoly 
+        window.console.log("window");
+        window.document.querySelector('js-cost-input');
+        // window.alert("ddada")
+
+
+        // Press enter key causing same effect as click
+        function press_enter() {
+            event.key === 'Enter' ? calculateTotal() : null;
+        }
+
+        // calculate the cost based on user input and show it on page.
+        function calculateTotal() {
+            // whenever we get a value from document object model DOM, then it is a string
+            const costInput = document.querySelector(".js-cost-input");
+            const cost = Number(costInput.value);
+
+            const final_cost = cost < 40 ? cost + 10 : cost;
+            document.querySelector('.final-cost').innerHTML = `$${final_cost}`;
+        }
+
+        // click subscribe -> subscribed
+        function subscribe() {
+            const button1 = document.querySelector('.subscribe-button');
+            button1.innerText = button1.innerHTML === 'Subscribe' ? 'Subscribed' : 'Subscribe';
+            button1.innerText === 'Subscribed' ? button1.classList.add('is-Subscribed') : button1.classList.remove('is-Subscribed');
+        }
+        
+    </script>
+</body>
+</html>
