@@ -1,0 +1,38 @@
+.cart-button {
+    border: none;
+    color: black;
+    background-color: rgb(255, 216, 20);
+    padding: 5px 30px;
+    border-radius: 20px;
+}
+
+.request-button {
+    background-color: black;
+    color: white;
+    padding: 10px 17px;
+    border-radius: 5px;
+}
+
+.Schedule-for-later {
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(230,230,230);
+    color: black;
+    padding: 13px 20px;
+}
+
+
+.game_button1, .game_button2, .game_button3 {
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.is_toggled {
+    background-color: rgb(227, 227, 227);
+    color: black;
+}
