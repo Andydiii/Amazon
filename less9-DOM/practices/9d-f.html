@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input class="input" type="text" placeholder="Name" onkeydown="
+        // onkeydown means when you press some key on this element, what happen
+        event.key === 'Enter' ? clickSubmit(): null;
+    ">
+
+    <button onclick="
+        clickSubmit()
+    ">Submit</button>
+    
+    <p class="response-p1"></p>
+
+    <script>
+        function clickSubmit() {
+            let response = document.querySelector('.input').value;
+            document.querySelector('.response-p1').innerHTML = `Your name is: ${response}`;
+        }
+    </script>
+</body>
+</html>
