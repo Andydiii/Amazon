@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 11o 11p
+        function find_search(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] === 'search') {
+                    console.log(i);
+                    return;
+                }
+            }
+            console.log(-1);
+        }
+        const arr = ['1', '213', 'dasda', 'search'];
+        const arr2 = ['not', 'found'];
+        find_search(arr);
+        find_search(arr2);
+
+        // 11q
+        function findIndex(array, word) {
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] === word) {
+                    console.log(i);
+                    return;
+                }
+            }
+            console.log(-1);
+        }
+
+        findIndex(['green', 'red', 'blue'], 'red');
+        findIndex(['green', 'red', 'blue'], 'yellow');
+
+        //11r 11s 11t 11u
+        function removeEgg(foods) {
+            let count = 0;
+            const newarr = [];
+            foods2 = foods.slice().reverse();
+            for (let i = 0; i < foods2.length; i++) {
+                // non first two eggs
+                if (foods2[i] !== 'egg' || (foods2[i] === 'egg' && count === 2)) {
+                    newarr.push(foods2[i]);
+                }
+                // first two eggs;
+                else {
+                    count++;
+                }
+            }
+            return newarr.reverse();
+        }
+
+        const arr3 = ['egg', 'egg', 'dada','da', 'egg', 'egg'];
+        console.log(removeEgg(arr3));
+        console.log(arr3);
+        
+        // 11v
+        function FizzBuzz(arr) {
+            const newarr = [];
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] % 3 === 0 && arr[i] % 5 === 0) {
+                    newarr.push('FizzBuzz');
+                }
+                else if (arr[i] % 3 === 0) {
+                    newarr.push('Fizz');
+                }
+                else if (arr[i] % 5 === 0) {
+                    newarr.push('Buzz');
+                }
+                else {
+                    newarr.push(arr[i]);
+                }
+            }
+            return newarr;
+        }
+
+        console.log(FizzBuzz([1,2,3,5,15,30,3,6,9,12,15,18,5,10,15,20]))
+
+        // 11w
+        function unique(arr) {
+            const obj = {};
+            const newarr = [];
+            for (let i = 0; i < arr.length; i++) {
+                if (obj[arr[i]] === undefined) {
+                    newarr.push(arr[i]);
+                    obj[arr[i]] = 1;
+                }
+            }
+            return newarr;
+        }
+
+        console.log(unique(['green', 'red', 'blue', 'red']));
+        console.log(unique(['red', 'green', 'green', 'red']));        
+        
+        // 11x is done in 11-todo-list.html
+    </script>
+</body>
+</html>
