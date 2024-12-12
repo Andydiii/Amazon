@@ -1,13 +1,19 @@
-//  update current score = last recorded score
+// restore last game result
 let score = JSON.parse(localStorage.getItem
 ("score")) || {
    wins: 0,
    lost: 0,
    tie: 0  
-}
+};
+
+let user_compu_result = JSON.parse(localStorage.getItem("user-compu-result")) || {
+    userMove: 'rock',
+    computerMove: 'rock',
+    result: 'haven\'t started'
+};
 
 // update result and playerMove and score on the page
-updateinfo(userMove, computer, result);
+updateinfo(user_compu_result.userMove, user_compu_result.computerMove, user_compu_result.result);
 
 // update page informtation: result, playerMove, score
 function updateinfo(userMove, computerMove, result) {
@@ -96,6 +102,8 @@ function playgame(userMove) {
    // update score in the local storage
    localStorage.setItem("score", JSON.stringify(score));
 
+   // store usermove computermove and result in the local storage
+   localStorage.setItem("user-compu-result", JSON.stringify({userMove, computer, result}));
 //                 // print it on the page
 //                 alert(`You picked ${userMove}. Computer picked ${computer}. you have ${result}.
 // wins: ${score.wins}, lost: ${score.lost}, ties: ${score.tie}`);
