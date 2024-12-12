@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> 
+<body>
+    <script>
+        // 11a
+        const nums = [10, 20, 30];
+        nums[2] = 99;
+
+        // 11b
+        function getLastValue(array) {
+            return array[array.length - 1];
+        }
+
+        console.log(getLastValue(nums));
+
+        // 11c
+        function arraySwap(array) {
+            if (array.length) {
+                let value = array[0];
+                array[0] = array[array.length - 1];
+                array[array.length - 1] = value;
+            }
+        }
+
+        arraySwap(nums);
+        console.log(nums);
+
+        // 11d
+        for (let i = 0; i < 11; i+=2) {
+            console.log(i);
+        }
+
+        // 11f
+        i = 0;
+        while (i < 11) {
+            console.log(i);
+            i+=2;
+        }
+        
+        // 11e
+        for (let i = 5; i >= 0; i--) {
+            console.log(i);
+        }
+
+        // 11f
+        i = 5;
+        while (i >= 0) {
+            console.log(i);
+            i--;
+        }
+
+        // 11g
+        const nums2 = [1,2,3]
+        for (let i = 0; i < nums.length; i++) {
+            nums2[i] += 1;
+        }
+        console.log(nums2);
+
+        // 11h
+        function addOne(array) {
+            for (let i = 0; i < array.length; i++) {
+                array[i] += 1;
+            }
+        }
+        addOne(nums2);
+        console.log(nums2);
+
+        // 11i
+        function addNum(array, num) {
+            for (let i = 0; i < array.length; i++) {
+                array[i] += num;
+            }
+        }
+
+        const nums3 = [1, 2, 3];
+        addNum(nums3, 2);
+        console.log(nums3);
+
+
+
+        // 11j
+        function addArrays(array1, array2) {
+            const array3 = [];
+            for (let i = 0; i < array1.length; i++) {
+                array3.push(array1[i] + array2[i]);
+            }
+            return array3;
+        }
+
+        const arr1 = [1,1,1];
+        const arr2 = [1,1,1];
+        
+        console.log(addArrays(arr1, arr2));
+
+
+        // 11k
+        function countPositive(nums) {
+            let count = 0;
+            for (let i = 0; i < nums.length; i++) {
+                nums[i] > 0 ? count++ : null; 
+            }
+            return count;
+        }
+
+        console.log(countPositive([1,2,3]));
+
+        // 11l 11m
+        function minMax(nums) {
+            const obj = {
+                maxNum: null,
+                minNum: null
+            };
+
+            for (let i = 0; i < nums.length; i++) {
+                nums[i] < obj.minNum ? obj.minNum = nums[i] :
+                    nums[i] >= obj.maxNum ? obj.maxNum = nums[i] : null ; 
+            }
+            return obj;
+        }
+
+        console.log(minMax([]));
+        console.log(minMax([1,-2,3]));
+
+        // 11n
+        function countWords(words) {
+            const counts = {};
+            for (let i = 0; i < words.length; i++) {
+                if (counts[words[i]] === undefined) {
+                    counts[words[i]] = 1;
+                }
+                else {
+                    counts[words[i]] += 1;
+                }
+            }
+            return counts;
+        }
+
+        let arry = [1,2,3, 1, 2, 3];
+        console.log(countWords(arry));
+
+    </script>
+</body>
+</html>
