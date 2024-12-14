@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/calculator.css">
+</head>
+<body>
+    <p class="shownumber"></p>
+    <div>
+        <button class="calculator-button" onclick="
+            updateResult('1');
+        ">
+            1
+        </button>
+
+        <button class="calculator-button" onclick="
+            updateResult('2');
+        ">
+            2
+        </button>
+
+        <button class="calculator-button" onclick="
+            updateResult('3');
+        ">
+            3
+        </button>
+
+        <button class="calculator-button orange-button" onclick="
+            updateResult(' + ');
+        ">
+            +
+        </button>
+    </div>
+
+    <div>
+       <button class="calculator-button" onclick="
+            updateResult('4');
+        ">
+            4
+        </button> 
+
+        <button class="calculator-button" onclick="
+            updateResult('5');
+        ">
+            5
+        </button>
+
+        <button class="calculator-button" onclick="
+            updateResult('6');
+        ">
+            6
+        </button>
+
+        <button class="calculator-button orange-button" onclick="
+            updateResult(' - ');
+        ">
+            -
+        </button>
+    </div>
+
+    <div>
+        <button class="calculator-button" onclick="
+             updateResult('7');
+         ">
+             7
+         </button> 
+ 
+         <button class="calculator-button" onclick="
+             updateResult('8');
+         ">
+             8
+         </button>
+ 
+         <button class="calculator-button" onclick="
+             updateResult('9');
+         ">
+             9
+         </button>
+ 
+         <button class="calculator-button orange-button" onclick="
+             updateResult(' * ');
+         ">
+             *
+         </button>
+     </div>
+
+     <div>
+        <button class="calculator-button" onclick="
+             updateResult('0');
+         ">
+             0
+         </button> 
+ 
+         <button class="calculator-button" onclick="
+             updateResult('.');
+         ">
+             .
+         </button>
+ 
+        <button class="calculator-button" onclick="
+            result = eval(calculation);
+            calculation = '';
+            updateResult(`${result}`);
+            // console.log(calculation);
+        ">
+            =
+        </button>
+
+        <button class="calculator-button orange-button" onclick="
+            updateResult(' / ');
+        ">
+            /
+        </button>
+     </div>
+
+     <button class="calculator-button clear-button" onclick="
+        calculation = '';
+        updateResult('');
+        localStorage.removeItem('calculation');
+     ">
+        Clear
+     </button>
+
+     <p class="result"></p>
+
+    <script src="../scripts/calculator.js"></script>
+</body>
+</html>
