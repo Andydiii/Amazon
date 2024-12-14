@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Functions</title>
+</head>
+<body>
+    <script>
+        /*
+        function greeting() {
+            console.log('hello');
+        }
+        greeting();
+
+        // 1. store a function in a variable;
+        const num = 2;
+        const function1 = function greeting() {
+            console.log('hello2');
+        };
+
+        console.log(function1);
+        console.log(typeof function1);
+
+        // call the function by varible;
+        function1();
+
+        // 2. dont actually need a function name to run the function in this case:
+        const function2 = function() {
+            console.log('hello3');
+        };
+
+        // call the function by variable again.
+        function2();
+
+        // 3. store function in object
+        const object1 = {
+            num: 2,
+
+            //method
+            fun: function() {
+                console.log('hello4');
+            }
+        };
+
+        // call the function by the property
+        object1.fun();
+
+        // 4. passing a function into another function
+        function display(param) {
+            console.log(param);
+        }
+
+        display(2);
+
+        function run(param) {
+            param();
+        }
+
+        run(function(){
+            console.log(2);
+        });
+
+        // 5. setTimeout built in function: used function as parameter and call it later.
+        // the first argument passed in, which is the function, will be called in the future
+        // the second argument passed in, is the time in milliseconds we wait before running the function.
+        // 1000 milliseconds = 1 second
+
+        // Asynchronous code: wont wait for a line to finish before going to the next line. 
+        // Synchronous code: will wait for one line to finish before going to the next line.
+        // setTimeout is one example of Asynchronous code.
+        setTimeout(function() {
+            console.log('timeout2');
+        }, 3000);
+
+        console.log('next line');
+
+
+        // run the function in 3 seconds, and keep running it every 3 seconds.
+        setInterval(function() {
+            console.log('interval');
+        }, 3000);
+
+        console.log('next line 2');
+
+        */
+
+        [
+            'make dinner',
+            'wash dishes',
+            'watch youtube'
+        ].forEach(function(value, index) {
+            if (value === 'wash dishes') {
+                // return acts the continue in for each loop
+                return;
+
+                // but there is no break in for each loop
+            }
+            console.log(`"${value}" is at index: ${index}`);
+        });
+
+
+        
+    </script>
+</body>
+</html>
