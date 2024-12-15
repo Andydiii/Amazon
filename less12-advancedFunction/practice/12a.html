@@ -21,3 +21,102 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 12c -->
+     <div>
+        <button class="StartButton" onclick="
+            clickStart();
+        ">Start</button>
+     </div>
+    
+    <!-- 12d -->
+     <div>
+        <button onclick="
+            clickAddToCart();
+        ">Add to cart</button>
+     </div>
+     
+     
+     <p class="js-added"></p>
+
+
+     <div>
+        <button onclick="
+            messages++;
+        ">Add</button>
+
+        <button onclick="
+            removeMessage();
+        ">Remove</button>
+     </div>
+    <script>
+        // 12a
+        let add = function addfunc() {
+            console.log(2+3);
+        };
+
+        add();
+        add();
+
+        // 12b
+        function runTwice(fun) {
+            fun();
+            fun();
+        }
+        
+        runTwice(function() {
+            console.log('12b');
+        })
+
+        runTwice(add);
+
+        // 12c - 12d
+        function clickStart() {
+            const updateButton = function() {
+                document.querySelector('.StartButton').innerHTML = 'Finished!';
+            }
+
+            document.querySelector('.StartButton').innerHTML = 'loading...';
+
+            setTimeout(updateButton, 1000);
+        }
+
+        // 12e -12f
+        let ID;
+        function clickAddToCart() {
+            clearTimeout(ID);
+            document.querySelector('.js-added').innerHTML = 'Added';
+
+            ID = setTimeout(function() {
+                document.querySelector('.js-added').innerHTML = '';
+            }, 2000);
+        }
+
+        // 12g - 12h - 12i
+        let messages = 0;
+        setInterval(function() {
+            if (document.title === 'App') {
+                document.title = `(${messages}) New messages`;
+            }
+            else {
+                document.title = 'App';
+            }
+        }, 1000);
+
+        function removeMessage() {
+            if (messages != 0) {
+                messages--;
+            }
+        }
+
+    </script>
+</body>
+</html>
