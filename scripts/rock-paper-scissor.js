@@ -104,19 +104,23 @@ let score = JSON.parse(localStorage.getItem
     
        // store usermove computermove and result in the local storage
        localStorage.setItem("user-compu-result", JSON.stringify({userMove, computer, result}));
-    //                 // print it on the page
-    //                 alert(`You picked ${userMove}. Computer picked ${computer}. you have ${result}.
-    // wins: ${score.wins}, lost: ${score.lost}, ties: ${score.tie}`);
     }
 
     let isAutoPlaying = false;
     let intervalID;
 
-    // auto play
+    /* auto play arrow function version
+    const autoPlay = () => {
+        ...
+        ...
+    }
+    */
+
+    // auto play regular function version
     function autoPlay() {
 
         if (!isAutoPlaying) {
-            intervalID = setInterval(function() {
+            intervalID = setInterval(() => {
                 const userMove = computerMove();
                 playgame(userMove);
             }, 1500);
