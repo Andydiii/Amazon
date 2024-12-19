@@ -17,16 +17,9 @@ function renderTodoList() {
         html += `
                 <div>${todoName}</div> 
                 <div>${dueDate}</div>
-                <button class="delete-button" onclick="
-                    todoList.splice(${index}, 1);
-                    renderTodoList();
-
-                    saveToStorage();
-
-                ">Delete</button>
+                <button class="delete-button js-delete-button">Delete</button>
         `;
     });
-
     /*
     for (let i = 0; i < todoList.length; i++) {
         const todoObject = todoList[i];
@@ -46,6 +39,14 @@ function renderTodoList() {
     }
     */
     document.querySelector('.js-result1').innerHTML = html;
+    
+    document.querySelectorAll('.js-delete-button').forEach( (deleteButton, index) => {
+        deleteButton.addEventListener('click', () => {
+            todoList.splice(index, 1);
+            renderTodoList();
+            saveToStorage();
+        })
+    });
 }
 
 function addTodo() {
@@ -65,3 +66,8 @@ function addTodo() {
 function saveToStorage() {
     localStorage.setItem('todoList', JSON.stringify(todoList));
 }
+
+document.querySelector('.js-add-button').addEventListener('click', () => {
+    addTodo();    
+});
+
