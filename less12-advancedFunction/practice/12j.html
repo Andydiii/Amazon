@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 12j - 12k
+        const multiply = (num1, num2) => num1 * num2;
+        console.log(multiply(2, 3));
+
+        // 12l
+        let count = 0;
+        function countPositive(nums) {
+            nums.forEach((value, index) => {
+                value > 0 ? count++ : null; 
+            });
+            return count;
+        }
+        console.log(countPositive([1,2,3,-1,-2]));
+
+        // 12m
+        function addNum(array, num) {
+            let newarr = [];
+            array.map((value, index) => {
+                newarr.push(value + num);
+            });
+            return newarr;
+        }
+
+        console.log(addNum([1,2,3], 3));
+
+        // 12n
+        function removeEgg(foods) {
+            return foods.filter(value => value !== 'egg');
+        }
+        
+        console.log(removeEgg(['da', 'egg', 'egg']));
+
+        // 12 o
+        
+        function removetwoEggs(foods) {
+            let countEgg = 0;
+            return foods.filter((value) => {
+                if (countEgg !== 2 && value === 'egg') {
+                    countEgg++;
+                    return false;
+                }
+                return true;
+            });
+        }
+
+        console.log(removetwoEggs(['dad', 'edsf', 'egg', 'das', 'egg', 'egg']));
+
+        // 12r
+        
+
+    </script>
+</body>
+</html>

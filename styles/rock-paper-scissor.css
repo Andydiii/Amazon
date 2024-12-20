@@ -35,7 +35,9 @@ body {
 }
 
 .reset, 
-.auto-play {
+.auto-play,
+.js-Yes,
+.js-No {
     border: none;
     background-color: white;
     padding: 8px 15px;
@@ -43,3 +45,9 @@ body {
 
     cursor: pointer;
 } 
+
+
+
+.js-reset-confirmation {
+    color: white;
+}

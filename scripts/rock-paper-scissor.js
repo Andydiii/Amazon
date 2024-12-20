@@ -152,7 +152,7 @@ document.querySelector('.js-auto-button').addEventListener('click', () => {
     autoPlay();
 });
 
-document.querySelector('.js-reset-button').addEventListener('click', () => {
+function reset() {
     // reset current score all to be 0;
     score.wins = 0;
     score.lost = 0;
@@ -163,6 +163,28 @@ document.querySelector('.js-reset-button').addEventListener('click', () => {
 
     // update score in localStorage
     localStorage.removeItem('score');
+}
+
+
+
+function renderMsg() {
+    document.querySelector('.js-reset-confirmation').innerHTML 
+    = `Are you sure you want to reset the score?
+        <button class = "js-Yes">Yes</button>
+        <button class = "js-No">No</button>`;
+
+    document.querySelector('.js-Yes').addEventListener('click', () => {
+        reset();
+        document.querySelector('.js-reset-confirmation').innerHTML = '';
+    });
+    
+    document.querySelector('.js-No').addEventListener('click', () => {
+        document.querySelector('.js-reset-confirmation').innerHTML = '';
+    });
+}
+
+document.querySelector('.js-reset-button').addEventListener('click', () => {
+    renderMsg();
 });
 
 
@@ -173,5 +195,13 @@ document.body.addEventListener('keydown', (event) => {
         playgame('paper');
     } else if (event.key === 's') {
         playgame('scissor');
+    } else if (event.key === 'a') {
+        autoPlay();
+    }
+});
+
+document.body.addEventListener('keydown', (event) => {
+    if (event.key === ' ') {
+        renderMsg();
     }
 });
