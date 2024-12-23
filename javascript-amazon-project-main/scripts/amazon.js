@@ -1,36 +1,11 @@
-const products = [{
-    img: 'images/products/athletic-cotton-socks-6-pairs.jpg',
-    name: 'Black and Gray Athletic Cotton Socks - 6 Pairs',
-    rating: {
-        stars: 4.5,
-        counts: 87
-    },
-    priceInCents: 1090
-}, {
-    img:"images/products/intermediate-composite-basketball.jpg",
-    name: 'Intermediate Size Basketball',
-    rating: {
-        stars: 4,
-        counts: 127
-    },
-    priceInCents: 2095
-}, {
-    img: 'images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg',
-    name: 'Adults Plain Cotton T-Shirt - 2 Pack',
-    rating: {
-        stars: 4.5,
-        counts: 56
-    },
-    priceInCents: 799
-}];
-
 let productsHTML = '';
+
 products.forEach((product) => {
     productsHTML += `
         <div class="product-container"> 
           <div class="product-image-container">
             <img class="product-image"
-              src=${product.img}>
+              src=${product.image}>
           </div>
 
           <div class="product-name limit-text-to-2-lines">
@@ -41,12 +16,12 @@ products.forEach((product) => {
             <img class="product-rating-stars"
               src="images/ratings/rating-${product.rating.stars * 10}.png">
             <div class="product-rating-count link-primary">
-              ${product.rating.counts}
+              ${product.rating.count}
             </div>
           </div>
 
           <div class="product-price">
-            $${(product.priceInCents / 100).toFixed(2)}
+            $${(product.priceCents / 100).toFixed(2)}
           </div>
 
           <div class="product-quantity-container">
