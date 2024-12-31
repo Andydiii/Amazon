@@ -1,4 +1,4 @@
-export const cart = [{
+export let cart = [{
     productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
     quantity: 2
 }, {
@@ -26,4 +26,18 @@ export function addToCart(productId) {
             quantity
         });
     }
-  }
+}
+
+// remove cartItem from cart
+export function removeFromCart(productID) {
+    const newCart = [];
+
+    cart.forEach((cartItem) => {
+        // not the item we wanna delete, then add it to new cart
+        if (cartItem.productId !== productID) {
+            newCart.push(cartItem);
+        }
+    });
+
+    cart = newCart;
+}
