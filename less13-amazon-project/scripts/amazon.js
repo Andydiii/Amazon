@@ -64,7 +64,7 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 //updateIconQuantity
 function updateIconQuantity() {
   // update the total quantities on the cart icon.
-  let cartQuantity = 0;
+  let cartQuantity = 3;
   cart.forEach((cartItem) => {
     cartQuantity += cartItem.quantity;
   });
