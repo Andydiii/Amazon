@@ -3,6 +3,8 @@ import {cart, addToCart} from "../data/cart.js";
 import {products} from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
+updateIconQuantity();
+
 // to add each product into amazon project
 let productsHTML = '';
 
@@ -65,11 +67,11 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 //updateIconQuantity
 function updateIconQuantity() {
   // update the total quantities on the cart icon.
-  let cartQuantity = 3;
+  let cartQuantity = 0;
   cart.forEach((cartItem) => {
     cartQuantity += cartItem.quantity;
   });
-  document.querySelector('.cart-quantity').innerHTML = cartQuantity;
+  document.querySelector('.js-cart-quantity').innerHTML = `${cartQuantity}`;
 }
 
 

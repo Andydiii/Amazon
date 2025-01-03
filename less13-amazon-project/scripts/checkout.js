@@ -3,6 +3,15 @@ import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
 
+// update the checkout total item quantity
+let cartQuantity = 0;
+cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+});
+
+document.querySelector('.js-return-to-home-link').innerHTML = `${cartQuantity}`;
+
+// checkout summary html
 let cartSummaryHTML = '';
 
 cart.forEach((cartItem) => {
@@ -89,9 +98,10 @@ cart.forEach((cartItem) => {
     `;
 });
 
+// checkout summary html
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
 
-
+// delete the item from the cart whenever we click 'delete'
 document.querySelectorAll('.js-delete-button').forEach((link) => {
     link.addEventListener("click", () => {
         const productID = link.dataset.productId
