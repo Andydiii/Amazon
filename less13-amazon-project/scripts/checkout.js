@@ -1,15 +1,16 @@
-import { cart, removeFromCart} from "../data/cart.js";
+import { cart, removeFromCart, saveToStorage, calculateCartQuantity, updateQuantity} from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
+updateTotalQuantity();
 
 // update the checkout total item quantity
-let cartQuantity = 0;
-cart.forEach((cartItem) => {
-    cartQuantity += cartItem.quantity;
-});
+function updateTotalQuantity() {
+    const quantity = calculateCartQuantity();
 
-document.querySelector('.js-return-to-home-link').innerHTML = `${cartQuantity}`;
+    document.querySelector('.js-return-to-home-link').innerHTML = `${quantity}`;
+}
+
 
 // checkout summary html
 let cartSummaryHTML = '';
@@ -26,7 +27,7 @@ cart.forEach((cartItem) => {
     });
 
     cartSummaryHTML += `  
-        <div class="cart-item-container js-item-container-${targetProduct.id} ">
+        <div class="cart-item-container js-item-container-${targetProduct.id}">
             <div class="delivery-date">
                 Delivery date: Tuesday, June 21
             </div>
@@ -35,22 +36,24 @@ cart.forEach((cartItem) => {
                 <img class="product-image" src="${targetProduct.image}">
 
                 <div class="cart-item-details">
-                <div class="${targetProduct.name}">
-                    Black and Gray Athletic Cotton Socks - 6 Pairs
+                <div class="product-name">
+                    ${targetProduct.name}
                 </div>
                 <div class="product-price">
                     $${formatCurrency(targetProduct.priceCents)}
                 </div>
                 <div class="product-quantity">
                     <span>
-                    Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                        Quantity: <span class="quantity-label js-quantity-label-${targetProduct.id}">${cartItem.quantity}</span>
                     </span>
-                    <span class="update-quantity-link link-primary">
-                    Update
+                    <span class="update-quantity-link link-primary js-update-quantity-link" data-product-id="${targetProduct.id}">
+                        Update
                     </span>
+                    <input class="quantity-input js-quantity-input-${targetProduct.id}"></input>
+                    <span class="save-quantity-link link-primary" data-product-id = "${targetProduct.id}">Save</span>
                     <span class="delete-quantity-link link-primary 
                     js-delete-button" data-product-id = "${targetProduct.id}">
-                    Delete
+                        Delete
                     </span>
                 </div>
                 </div>
@@ -98,18 +101,57 @@ cart.forEach((cartItem) => {
     `;
 });
 
-// checkout summary html
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
 
 // delete the item from the cart whenever we click 'delete'
 document.querySelectorAll('.js-delete-button').forEach((link) => {
     link.addEventListener("click", () => {
-        const productID = link.dataset.productId
+        const productID = link.dataset.productId;
+        // remove the cart item in cart
         removeFromCart(productID);
-        console.log(cart);
+
+        // store the current cart item in localstorage
+        saveToStorage();
         
         // console.log(document.querySelector(`.js-item-container-${productID}`));
         document.querySelector(`.js-item-container-${productID}`).remove();
+
+        // update the total quantity shown on the header
+        updateTotalQuantity();
+        
     });
 });
 
+// when click update, there will be a input box and a save button.
+document.querySelectorAll('.js-update-quantity-link').forEach((updateEle) => {
+    updateEle.addEventListener('click', () => {
+        document.querySelector(`.js-item-container-${updateEle.dataset.productId}`).classList.add('is-editing-quantity');
+    });
+});
+
+// when click save, save button and input box disapper and only update button is there.
+document.querySelectorAll('.save-quantity-link').forEach((saveEle) => {
+    saveEle.addEventListener('click', () => {
+        // ID stored in web
+        const productID = saveEle.dataset.productId;
+
+        // get new updated quantity
+        const newQuantity = Number(document.querySelector(`.js-quantity-input-${productID}`).value);
+        
+        // find the item in the cart and update quantity in the cart 
+        updateQuantity(productID, newQuantity);
+
+        // update web quantity 
+        document.querySelector(`.js-quantity-label-${productID}`).innerHTML = `${newQuantity}`;
+
+        // update total quantity in the checkout header
+        updateTotalQuantity();
+
+        // store the cart in localstorage
+        saveToStorage();
+
+        // 'save' button disapper
+        const itemContainer = document.querySelector(`.js-item-container-${productID}`)
+        itemContainer.classList.remove('is-editing-quantity');
+    });
+});

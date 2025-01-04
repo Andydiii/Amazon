@@ -2,6 +2,7 @@ import {cart, addToCart} from "../data/cart.js";
 // import * as cartModule from "../data/cart.js" is also good.
 import {products} from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
+import { calculateCartQuantity } from "../data/cart.js";
 
 updateIconQuantity();
 
@@ -67,11 +68,9 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 //updateIconQuantity
 function updateIconQuantity() {
   // update the total quantities on the cart icon.
-  let cartQuantity = 0;
-  cart.forEach((cartItem) => {
-    cartQuantity += cartItem.quantity;
-  });
-  document.querySelector('.js-cart-quantity').innerHTML = `${cartQuantity}`;
+  const quantity = calculateCartQuantity();
+
+  document.querySelector('.js-cart-quantity').innerHTML = `${quantity}`;
 }
 
 
