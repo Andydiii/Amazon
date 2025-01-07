@@ -1,6 +1,6 @@
 // Named export
 import { cart, removeFromCart, saveToStorage, calculateCartQuantity, updateQuantity, updateDeliveryOption} from "../../data/cart.js";
-import { products } from "../../data/products.js";
+import { products, getProduct} from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 // ESM version of library: with export so we wont have naming conflict
 import { hello } from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
@@ -8,6 +8,7 @@ import { hello } from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 //  only allows one thing to export like below.
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions } from "../../data/deliveryOptions.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 // import '../data/backend-practice.js'
 
 hello();
@@ -16,10 +17,9 @@ const today = dayjs();
 const deliveryDate1 = today.add(7, 'day');
 console.log(deliveryDate1.format('dddd, MMMM D'));
 
-
 export function renderOrderSummary() {
     updateTotalQuantity();
-
+    
     // update the checkout total item quantity
     function updateTotalQuantity() {
         const quantity = calculateCartQuantity();
@@ -34,12 +34,7 @@ export function renderOrderSummary() {
         const productID = cartItem.productId;
 
 
-        let targetProduct;
-        products.forEach((product) => {
-            if (product.id === productID) {
-                targetProduct = product;
-            }
-        });
+        const targetProduct = getProduct(productID);
 
         const deliveryOptionId = cartItem.deliveryOptionId;
         let deliveryOption;
@@ -113,7 +108,9 @@ export function renderOrderSummary() {
 
             // update the total quantity shown on the header
             updateTotalQuantity();
-            
+
+            // update information in payment part
+            renderPaymentSummary();
         });
     });
 
@@ -148,6 +145,9 @@ export function renderOrderSummary() {
             // 'save' button disapper
             const itemContainer = document.querySelector(`.js-item-container-${productID}`)
             itemContainer.classList.remove('is-editing-quantity');
+
+            // update information on payment part;
+            renderPaymentSummary();
         });
     });
 
