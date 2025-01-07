@@ -69,3 +69,15 @@ export function updateQuantity(productID, newQuantity) {
         }
     });
 }
+
+
+// update deliveryOption when user click other option(originally set to be default option 1)
+export function updateDeliveryOption(productId, deliveryOptionId) {
+    cart.forEach((cartItem) => {
+        if (cartItem.productId === productId) {
+            cartItem.deliveryOptionId = deliveryOptionId;
+            console.log(cartItem.deliveryOptionId);
+            saveToStorage();
+        }
+    })
+}

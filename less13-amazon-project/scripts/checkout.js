@@ -1,5 +1,5 @@
 // Named export
-import { cart, removeFromCart, saveToStorage, calculateCartQuantity, updateQuantity} from "../data/cart.js";
+import { cart, removeFromCart, saveToStorage, calculateCartQuantity, updateQuantity, updateDeliveryOption} from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 // ESM version of library: with export so we wont have naming conflict
@@ -23,7 +23,6 @@ function updateTotalQuantity() {
 
     document.querySelector('.js-return-to-home-link').innerHTML = `${quantity}`;
 }
-
 
 // checkout summary html
 let cartSummaryHTML = '';
@@ -149,7 +148,7 @@ document.querySelectorAll('.save-quantity-link').forEach((saveEle) => {
     });
 });
 
-// generat HTML for 3 delivery method
+// generat HTML for 3 delivery method for a cartItem
 function deliveryOptionsHTML(targetProduct, cartItem) {
     let html = '';
 
@@ -164,7 +163,9 @@ function deliveryOptionsHTML(targetProduct, cartItem) {
         const isChecked = deliveryOption.id === cartItem.deliveryOptionId ? 'checked' : '';
 
         html += 
-        `<div class="delivery-option">
+        `<div class="delivery-option js-delivery-option"
+            data-product-id = "${targetProduct.id}" 
+            data-delivery-id = "${deliveryOption.id}">
             <input type="radio" ${isChecked} class="delivery-option-input" name="delivery-option-${targetProduct.id}">
             <div>
                 <div class="delivery-option-date">
@@ -178,3 +179,11 @@ function deliveryOptionsHTML(targetProduct, cartItem) {
     });    
     return html;
 }
+
+// each radio button(delivery method) is clickable and click will update the delivery id of cart item change.
+document.querySelectorAll('.js-delivery-option').forEach((deliveryMethodEle) => {
+    deliveryMethodEle.addEventListener('click', () => {
+        const {productId, deliveryId} = deliveryMethodEle.dataset;
+        updateDeliveryOption(productId, deliveryId);
+    });
+});
