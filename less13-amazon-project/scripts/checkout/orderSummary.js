@@ -11,12 +11,6 @@ import { deliveryOptions } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 // import '../data/backend-practice.js'
 
-hello();
-
-const today = dayjs();
-const deliveryDate1 = today.add(7, 'day');
-console.log(deliveryDate1.format('dddd, MMMM D'));
-
 export function renderOrderSummary() {
     updateTotalQuantity();
     
@@ -189,6 +183,7 @@ export function renderOrderSummary() {
             const {productId, deliveryId} = deliveryMethodEle.dataset;
             updateDeliveryOption(productId, deliveryId);
             renderOrderSummary();
+            renderPaymentSummary();
         });
     });
 }
