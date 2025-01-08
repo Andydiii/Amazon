@@ -97,8 +97,8 @@ export function renderOrderSummary() {
             // store the current cart item in localstorage
             saveToStorage();
             
-            // console.log(document.querySelector(`.js-item-container-${productID}`));
-            document.querySelector(`.js-item-container-${productID}`).remove();
+            // render the ordersummary again after data is updated
+            renderOrderSummary();
 
             // update the total quantity shown on the header
             updateTotalQuantity();
