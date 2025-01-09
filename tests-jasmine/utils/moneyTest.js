@@ -1,4 +1,4 @@
-import { formatCurrency } from "../less13-amazon-project/scripts/utils/money.js";
+import { formatCurrency } from "../../less13-amazon-project/scripts/utils/money.js";
 
 describe('test suite 1: formatCurrency', () => {
     it('convert cents into dollars', () => {
