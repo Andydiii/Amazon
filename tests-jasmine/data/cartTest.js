@@ -1,5 +1,6 @@
 import { addToCart, cart , loadFromStorage} from "../../less13-amazon-project/data/cart.js";
 
+// unit test for addToCart
 describe('test suite: addToCart', () => {
     it('adds an existing product to the cart', () => {
         // we dont want testing to change the localstorage, so we make fake code for setItem
