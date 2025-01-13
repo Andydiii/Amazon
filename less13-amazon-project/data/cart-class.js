@@ -1,17 +1,17 @@
 // class starts with capital
 class Cart {
     cartItems;
-    localStorageKey;
+    #localStorageKey; // put # in the front make the property private, which means it can only be accessed within the class, and cannot be accessed outside the class.
 
     // customize constructor do something
     constructor(localStorageKey) {
-        this.localStorageKey = localStorageKey;
-        this.loadFromStorage();
+        this.#localStorageKey = localStorageKey;
+        this.#loadFromStorage();
     }
 
     // method 1
-    loadFromStorage() {
-        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) || [{
+    #loadFromStorage() {
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey)) || [{
             productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
             quantity: 2,
             deliveryOptionId: '1'
@@ -24,7 +24,7 @@ class Cart {
 
     // method 2
     saveToStorage() {
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+        localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
     }
 
     // calculate the quantity when we clicked addToCart button
