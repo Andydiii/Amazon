@@ -15,6 +15,7 @@ class Product {
     this.priceCents = productDetails.priceCents;
   }
 
+  
   getStarUrl() {
     return `images/ratings/rating-${this.rating.stars * 10}.png`;
   }
