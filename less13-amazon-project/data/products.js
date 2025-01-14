@@ -5,7 +5,7 @@ class Product {
   image;
   name;
   rating;
-  pricecents;
+  priceCents;
 
   constructor(productDetails) {
     this.id = productDetails.id;
@@ -15,7 +15,7 @@ class Product {
     this.priceCents = productDetails.priceCents;
   }
 
-  
+
   getStarUrl() {
     return `images/ratings/rating-${this.rating.stars * 10}.png`;
   }
@@ -23,6 +23,35 @@ class Product {
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  extraInfoHTML() {
+    return '';
+  }
+}
+
+// Clothing inherites all properties & methods of product
+class Clothing extends Product {
+  sizeChartLink;
+
+  // constructor for child class
+  constructor(productDetails) {
+    // constructor for parent class
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  // by default if there is no ctor for child class, it will call ctor for parent autolly
+
+  // overwrite the parent's rxtraInfoHTML
+  extraInfoHTML() {
+    // target = "_blank" tells browser to open in a new tab
+
+    // if wanna call parent's version: super.extraInfoHTML();
+    return `
+      <a href="${this.sizeChartLink}" target = "_blank">Size chart</a>
+    `;
+  }
+
 }
 
 export function getProduct(productID) {
@@ -715,5 +744,5 @@ export const products = [
     priceCents: 3300
   }
 ].map((productdetails) => {
-  return new Product(productdetails);
+  return productdetails.type === 'clothing' ? new Clothing(productdetails) : new Product(productdetails);
 });
