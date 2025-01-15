@@ -9,4 +9,4 @@
 >       - Model: data is stored and managed in data folder
 >       - view: checkout.js & amazone.js has utilized the data and display it by generating the HTML
 >       - controller: when we click radio button, there will be interactions triggered by code in checkout.js and amazone.js
-
+ 
