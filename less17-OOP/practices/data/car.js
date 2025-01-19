@@ -1,7 +1,7 @@
 // 17a
 export class Car {
-    brand;
-    model;
+    #brand;
+    #model;
     trunkOpened = false;
     speed = 0;
 
@@ -11,7 +11,7 @@ export class Car {
     }
 
     displayInfo() {
-        console.log(`brand: ${this.brand}, model: ${this.model}, speed: ${this.speed} km/h, trunk status: ${this.trunkOpened ? 'Opened' : 'Closed'}`);
+        console.log(`brand: ${this.#brand}, model: ${this.#model}, speed: ${this.speed} km/h, trunk status: ${this.trunkOpened ? 'Opened' : 'Closed'}`);
     }
 
     go() {
@@ -58,7 +58,6 @@ export const newTesla = new Car({
     model: 'Model 3'
 })
 
-
 export class RaceCar extends Car{
     acceleration;
 
@@ -84,6 +83,7 @@ export class RaceCar extends Car{
 
 const Porche = new RaceCar({
     brand: 'porche',
-    model: 'Cayne',
+    model: '911',
     acceleration: 15
 });
+

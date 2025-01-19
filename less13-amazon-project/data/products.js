@@ -54,6 +54,29 @@ class Clothing extends Product {
 
 }
 
+// 17h
+class Appliance extends Product{
+  instructionsLink;
+  warrantyLink;
+
+  constructor(applianceObj) {
+    super(applianceObj);
+    this.instructionsLink = applianceObj.instructionsLink;
+    this.warrantyLink = applianceObj.warrantyLink;
+  }
+
+  extraInfoHTML() {
+    return `<a href= '${this.instructionsLink}' target = '_blank'>
+              instructions link
+            </a>
+            </br>
+            <a href= '${this.warrantyLink}' target = '_blank'>
+              warranty link
+            </a>
+            `;
+  }
+} 
+
 export function getProduct(productID) {
   let targetProduct;
   products.forEach((product) => {
@@ -124,7 +147,10 @@ export const products = [
       "toaster",
       "kitchen",
       "appliances"
-    ]
+    ],
+    type: 'appliance',
+    instructionsLink: 'images/appliance-instructions.png',
+    warrantyLink: 'images/appliance-warranty.png'
   },
   {
     id: "3ebe75dc-64d2-4137-8860-1f5a963e534b",
@@ -309,7 +335,10 @@ export const products = [
       "water boiler",
       "appliances",
       "kitchen"
-    ]
+    ],
+    type: 'appliance',
+    instructionsLink: 'images/appliance-instructions.png',
+    warrantyLink: 'images/appliance-warranty.png'
   },
   {
     id: "6b07d4e7-f540-454e-8a1e-363f25dbae7d",
@@ -614,7 +643,10 @@ export const products = [
       "coffeemakers",
       "kitchen",
       "appliances"
-    ]
+    ],
+    type: 'appliance',
+    instructionsLink: 'images/appliance-instructions.png',
+    warrantyLink: 'images/appliance-warranty.png'
   },
   {
     id: "02e3a47e-dd68-467e-9f71-8bf6f723fdae",
@@ -674,7 +706,10 @@ export const products = [
       "food blenders",
       "kitchen",
       "appliances"
-    ]
+    ],
+    type: 'appliance',
+    instructionsLink: 'images/appliance-instructions.png',
+    warrantyLink: 'images/appliance-warranty.png'
   },
   {
     id: "36c64692-677f-4f58-b5ec-0dc2cf109e27",
@@ -744,11 +779,16 @@ export const products = [
     priceCents: 3300
   }
 ].map((productdetails) => {
-  return productdetails.type === 'clothing' ? new Clothing(productdetails) : new Product(productdetails);
+  if (productdetails.type === 'clothing') {
+    return new Clothing(productdetails);
+  } else if (productdetails.type === 'appliance') {
+    return new Appliance(productdetails);
+  } else {
+    return new Product(productdetails);
+  }
 }); 
 
-
-// this summary:
+// "this" summary:
 // 1. inside a method, "this points to the outer object
 // 2. inside a regular function, this = undefined
     // but we can change it by funciton.call('hello') -> function logThis() { console.log(this); } -> output hello
