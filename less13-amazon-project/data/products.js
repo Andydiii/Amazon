@@ -745,4 +745,11 @@ export const products = [
   }
 ].map((productdetails) => {
   return productdetails.type === 'clothing' ? new Clothing(productdetails) : new Product(productdetails);
-});
+}); 
+
+
+// this summary:
+// 1. inside a method, "this points to the outer object
+// 2. inside a regular function, this = undefined
+    // but we can change it by funciton.call('hello') -> function logThis() { console.log(this); } -> output hello
+// 3. arrow functions, cannot change the value of this.
