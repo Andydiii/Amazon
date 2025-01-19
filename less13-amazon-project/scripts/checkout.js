@@ -1,10 +1,9 @@
 import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
+import '../data/backend-practice.js';
 
 // for 17a
 import { Car, newToyota, newTesla } from "../../less17-OOP/practices/data/car.js";
-
-// import '../data/cart-class.js';
 
 renderOrderSummary();
 renderPaymentSummary();
@@ -43,4 +42,3 @@ newToyota.go();
 newToyota.displayInfo();
 newToyota.openTrunk();
 
-// 17e
