@@ -86,7 +86,8 @@ export function getProduct(productID) {
   });
   return targetProduct;
 }
-
+ 
+/* 
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -793,3 +794,30 @@ export const products = [
 // 2. inside a regular function, this = undefined
     // but we can change it by funciton.call('hello') -> function logThis() { console.log(this); } -> output hello
 // 3. arrow functions, cannot change the value of this.
+*/
+
+
+// use backend to load products
+export let products = [];
+
+export function loadProducts(renderProductsGrid) {
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', () => {
+    products = JSON.parse(xhr.response).map((productdetails) => {
+      if (productdetails.type === 'clothing') {
+        return new Clothing(productdetails);
+      } else if (productdetails.type === 'appliance') {
+        return new Appliance(productdetails);
+      } else {
+        return new Product(productdetails);
+      } 
+    });
+
+    // callback function: call this in the future
+    renderProductsGrid();
+  });
+
+  xhr.open('GET', 'https://supersimplebackend.dev/products');
+  xhr.send();
+}

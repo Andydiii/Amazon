@@ -1,13 +1,16 @@
 import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
-import '../data/backend-practice.js';
+import { loadProducts } from "../data/products.js";
+// import '../data/backend-practice.js';
 
 // for 17a
 import { Car, newToyota, newTesla } from "../../less17-OOP/practices/data/car.js";
 
-renderOrderSummary();
-renderPaymentSummary();
-
+// main code for checkout page.
+loadProducts(() => {
+    renderOrderSummary();
+    renderPaymentSummary();
+});
 
 // for 17a
 console.log(newToyota);
