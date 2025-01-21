@@ -800,6 +800,26 @@ export const products = [
 // use backend to load products
 export let products = [];
 
+export function loadProductsFetch() {
+  // fetch make a GET reuqest
+  // fetch uses promise to wait for response
+  const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
+    // gives us the data. response.json() is asychronous function, return a promise
+    return response.json(); // return result is already in JSON object, the response is originally JSON string
+  }).then((productData) => { 
+    products = productData.map((productdetails) => {
+      if (productdetails.type === 'clothing') {
+        return new Clothing(productdetails);
+      } else if (productdetails.type === 'appliance') {
+        return new Appliance(productdetails);
+      } else {
+        return new Product(productdetails);
+      } 
+    });
+  })
+  return promise;
+}
+
 export function loadProducts(renderProductsGrid) {
   const xhr = new XMLHttpRequest();
 

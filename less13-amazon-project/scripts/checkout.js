@@ -1,6 +1,6 @@
 import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
-import { loadProducts } from "../data/products.js";
+import { loadProducts, loadProductsFetch } from "../data/products.js";
 // import '../data/backend-practice.js';
 
 // for 17a
@@ -8,11 +8,7 @@ import { Car, newToyota, newTesla } from "../../less17-OOP/practices/data/car.js
 
 // main code for checkout page.
 // promise: one parameter "resolve", whenver use resolve, it means we can go to next step.
-new Promise((resolve) => {
-    loadProducts(() => {
-        resolve();
-    });
-}).then(() => {
+loadProductsFetch().then(() => {
     renderOrderSummary();
     renderPaymentSummary();
 })
