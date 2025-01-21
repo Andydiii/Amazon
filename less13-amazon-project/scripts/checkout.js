@@ -7,10 +7,15 @@ import { loadProducts } from "../data/products.js";
 import { Car, newToyota, newTesla } from "../../less17-OOP/practices/data/car.js";
 
 // main code for checkout page.
-loadProducts(() => {
+// promise: one parameter "resolve", whenver use resolve, it means we can go to next step.
+new Promise((resolve) => {
+    loadProducts(() => {
+        resolve();
+    });
+}).then(() => {
     renderOrderSummary();
     renderPaymentSummary();
-});
+})
 
 // for 17a
 console.log(newToyota);
