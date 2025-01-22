@@ -6,6 +6,17 @@ import { loadProducts, loadProductsFetch } from "../data/products.js";
 // for 17a
 import { Car, newToyota, newTesla } from "../../less17-OOP/practices/data/car.js";
 
+// async = makes a function return a promise, same but short version for below one.
+async function loadPage() {
+    // await lets us write asynchronous code like normal code.
+    await loadProductsFetch();
+
+    renderOrderSummary();  // synchronous code so no need for await
+    renderPaymentSummary();  // synchronous code so no need for await
+}
+loadPage();
+
+/*
 // main code for checkout page.
 // promise: one parameter "resolve", whenver use resolve, it means we can go to next step.
 loadProductsFetch().then(() => {
@@ -21,9 +32,7 @@ console.log(newTesla);
 newToyota.displayInfo();
 newTesla.displayInfo();
 
-
-// 17c
-newToyota.go();
+ 
 newToyota.go();
 newToyota.displayInfo();
 newToyota.reset();
@@ -46,3 +55,4 @@ newToyota.go();
 newToyota.displayInfo();
 newToyota.openTrunk();
 
+*/
