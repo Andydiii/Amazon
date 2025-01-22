@@ -15,7 +15,7 @@ async function loadPage() {
     renderPaymentSummary();  // synchronous code so no need for await
 }
 loadPage();
-
+ 
 /*
 // main code for checkout page.
 // promise: one parameter "resolve", whenver use resolve, it means we can go to next step.
